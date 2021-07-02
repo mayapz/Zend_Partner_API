@@ -2,6 +2,11 @@ openapi: 3.1.0
 info:
   title: ZEND PARTNER API
   version: v2.10
+  description: ZEND PARTNER API v2.10
+  contact:
+    name: Zendmoney
+    url: zendmoney.com
+    email: app@zendmoney.com
 servers:
   - url: '[DEV API ENDPOINT]'
 tags:
@@ -864,31 +869,6 @@ paths:
                   value:
                     message: success
                     code: '200'
-        '':
-          description: Response
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    message: success
-                    code: '200'
-                properties:
-                  message:
-                    type: string
-                    minLength: 1
-                    description: 'Response code from server, other than 200 means error'
-                  code:
-                    type: string
-                    minLength: 1
-                    description: Response message from server
-              examples:
-                Example:
-                  value:
-                    message: success
-                    code: '200'
       description: 'To upload required document for KYC verification '
       parameters:
         - schema:
@@ -1584,6 +1564,12 @@ paths:
                 - ServiceCode
                 - AccountNumber
                 - OperatorCode
+            examples:
+              example-1:
+                value:
+                  ServiceCode: '5'
+                  AccountNumber: '123145123123'
+                  OperatorCode: ''
   /ZmartTransaction:
     post:
       tags:
@@ -2645,7 +2631,7 @@ paths:
         content:
           application/json:
             schema:
-              description: ''
+              description: To generate virtual account number of each user.
               type: object
               x-examples:
                 example-1:
@@ -2696,6 +2682,7 @@ paths:
                 - refNumber
                 - amount
         description: ''
+      description: To generate virtual account number of each user.
   /ZmartBranchBalance:
     post:
       tags:
@@ -2704,34 +2691,6 @@ paths:
       operationId: post-ZmartBranchBalancee
       responses:
         '200':
-          description: Example response
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    message: Sukses  menyimpan  data
-                    code: '200'
-                properties:
-                  message:
-                    type: string
-                    minLength: 1
-                    description: 'Response code from server, other than 200 means error'
-                  code:
-                    type: string
-                    minLength: 1
-                    description: Response message from server
-                required:
-                  - message
-                  - code
-              examples:
-                Example:
-                  value:
-                    message: Sukses  menyimpan  data
-                    code: '200'
-        '':
           description: Example response
           content:
             application/json:
@@ -2837,6 +2796,7 @@ paths:
                 value:
                   user_id: userTPT
                   balance: '1000000'
+        description: ''
     parameters: []
 components:
   schemas:
@@ -3329,7 +3289,7 @@ components:
         - upload3
         - file_name3
     ZmartCreateVA:
-      description: ''
+      description: To generate virtual account number of each user.
       type: object
       x-examples:
         example-1:
@@ -4355,20 +4315,5 @@ components:
               value:
                 message: Berhasil Menyimpan Data
                 code: '200'
-  parameters:
-    PartnerKey_KYC:
-      name: PartnerKey
-      in: header
-      required: true
-      schema:
-        type: string
-      description: >-
-        Password that create from HMAC256(PartnerID + Secret Word + firstname +
-        lastName + idType + idNumber + idIssuePlace + idIssueDate + idExpiryDate
-        + birthDate + email + gender + phoneNumber + address1 + address2 + city
-        + postCode + state + country + nationality + answer1 + answer2 +
-        TimeStamp + SequenceNumber) with hash password (ZendKey) and show the
-        result as Base64 encoding.
-  examples:
-    Authorization:
-      value: hijihkjjkjkl
+  parameters: {}
+  examples: {}
